@@ -1,17 +1,18 @@
 {
   "model": {
-    "learning_rate": 1e-4,
+    "learning_rate": 3e-4,
     "batch_size": 64,
-    "epochs": 100,
+    "epochs": 300,
     "device": "cuda",
     "num_layers": 1,
-    "dims": 256
+    "dims": 256,
+    "cnn_model": 0
   },
   "file": {
     "path": "D:/Databases/07/samples/samples",
     "height": 50,
     "width": 180,
-    "path_to_save": "",
+    "path_to_save": "E:/Projects/OCR/OCR-Handwritten-Text/files",
     "num_channels": 1
   }
 }

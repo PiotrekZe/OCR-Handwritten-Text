@@ -18,6 +18,7 @@ def main():
     device = config_data['model']['device']
     num_layers = config_data['model']['num_layers']
     dims = config_data['model']['dims']
+    cnn_model = config_data['model']['cnn_model']
 
     path = config_data['file']['path']
     height = config_data['file']['height']
@@ -41,18 +42,29 @@ def main():
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, drop_last=True)
 
     crnn = Model.CRNN(size=size, num_chars=len(target_classes), num_channels=num_channels, device=device, dims=dims,
-                      num_layers=num_layers).to(device)
-    optimizer = torch.optim.Adam(crnn.parameters(), lr=learning_rate)  # 3e-4
+                      num_layers=num_layers, cnn_model=cnn_model).to(device)
+    optimizer = torch.optim.Adam(crnn.parameters(), lr=learning_rate)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, factor=0.8, patience=5, verbose=True)
 
     decoder = Decoder.Decoder(0)
     run_model = RunModel.RunModel(epochs, device, train_loader, test_loader, decoder, target_classes)
+
+    list_train_loss, list_train_accuracy, list_train_cer = [], [], []
+    list_test_loss, list_test_accuracy, list_test_cer = [], [], []
 
     for epoch in range(epochs):
         (train_decoded_outputs, train_running_loss, train_original_targets_list,
          train_accuracy, train_cer) = run_model.train_model(crnn, optimizer)
         (test_decoded_outputs, test_running_loss, test_original_targets_list,
          test_accuracy, test_cer) = run_model.test_model(crnn)
+
+        list_train_loss.append(train_running_loss)
+        list_train_accuracy.append(train_accuracy)
+        list_train_cer.append(train_cer)
+
+        list_test_loss.append(test_running_loss)
+        list_test_accuracy.append(test_accuracy)
+        list_test_cer.append(test_cer)
 
         print(f"Epoch: {epoch}, Train loss: {train_running_loss}, Test loss: {test_running_loss}")
         print(f"Train accuracy: {train_accuracy}, train cer: {train_cer}")
@@ -62,6 +74,19 @@ def main():
         print("Test decoded outputs: ", test_decoded_outputs[:4], " Test original targets: ",
               test_original_targets_list[:4])
         scheduler.step(test_running_loss)
+
+    lists = {
+        "train_loss": list_train_loss,
+        "train_accuracy": list_train_accuracy,
+        "train_cer": list_train_cer,
+        "test_loss": list_test_loss,
+        "test_accuracy": list_test_accuracy,
+        "test_cer": list_test_cer,
+    }
+
+    utils.save_model_results(path_to_save, lists)
+
+
 
 
 if __name__ == '__main__':
