@@ -1,0 +1,17 @@
+{
+  "model": {
+    "learning_rate": 1e-4,
+    "batch_size": 64,
+    "epochs": 100,
+    "device": "cuda",
+    "num_layers": 1,
+    "dims": 256
+  },
+  "file": {
+    "path": "D:/Databases/07/samples/samples",
+    "height": 50,
+    "width": 180,
+    "path_to_save": "",
+    "num_channels": 1
+  }
+}

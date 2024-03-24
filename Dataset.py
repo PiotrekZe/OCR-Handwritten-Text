@@ -1,4 +1,5 @@
 import os
+import numpy as np
 from sklearn import preprocessing
 from sklearn import model_selection
 
@@ -16,13 +17,17 @@ class Dataset:
             file_path = os.path.join(self.path, file)
             image_paths.append(file_path)
             targets.append(file[:-4])
+        Y = targets
 
-        targets, target_classes = self.__encode_labels(targets)
-        train_paths, test_paths, train_targets, test_targets = model_selection.train_test_split(image_paths, targets,
-                                                                                                test_size=0.2,
-                                                                                                random_state=42)
+        targets, targets_lengths, target_classes = self.__encode_labels(targets)
+        (train_paths, test_paths, train_targets, test_targets, train_targets_lengths, test_targets_lengths,
+         train_original_targets, test_original_targets) = model_selection.train_test_split(image_paths, targets,
+                                                                                           targets_lengths, Y,
+                                                                                           test_size=0.1,
+                                                                                           random_state=42)
 
-        return train_paths, test_paths, train_targets, test_targets, target_classes
+        return (train_paths, test_paths, train_targets, test_targets, train_targets_lengths, test_targets_lengths,
+                train_original_targets, test_original_targets, target_classes)
 
     def __encode_labels(self, targets):
         labels = [[y for y in x] for x in targets]
@@ -30,6 +35,8 @@ class Dataset:
         label_encoder = preprocessing.LabelEncoder()
         label_encoder.fit(labels_flat)
         labels_encoded = [label_encoder.transform(x) for x in labels]
+        labels_lengths = [len(x) for x in labels_encoded]
+        labels_encoded = np.array(labels_encoded) + 1
 
         # Use for datasets with different size of targets - they require padding, and the original size of target for
         # CTC Loss in case of CAPTCHA dataset all targets are the same size
@@ -40,4 +47,4 @@ class Dataset:
         labels_encoded = [list(label) + [padding_symbol] * (max_length - len(label)) for label in labels_encoded]
         labels_encoded = np.array(labels_encoded) + 1
         '''
-        return labels_encoded, label_encoder.classes_
+        return labels_encoded, labels_lengths, label_encoder.classes_
