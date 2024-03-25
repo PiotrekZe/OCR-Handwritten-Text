@@ -73,6 +73,7 @@ def main():
               train_original_targets_list[:4])
         print("Test decoded outputs: ", test_decoded_outputs[:4], " Test original targets: ",
               test_original_targets_list[:4])
+
         scheduler.step(test_running_loss)
 
     lists = {

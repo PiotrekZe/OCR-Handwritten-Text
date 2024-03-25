@@ -4,9 +4,9 @@
     "batch_size": 64,
     "epochs": 300,
     "device": "cuda",
-    "num_layers": 1,
+    "num_layers": 3,
     "dims": 256,
-    "cnn_model": 0
+    "cnn_model": 3
   },
   "file": {
     "path": "D:/Databases/07/samples/samples",
