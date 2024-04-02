@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from torchvision.models import resnet18, ResNet18_Weights
-import CNNEncoder
+import CAPTCHA_OCR.CNNEncoder as CNNEncoder
 
 
 class CRNN(nn.Module):

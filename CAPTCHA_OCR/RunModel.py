@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-import utils
+import CAPTCHA_OCR.utils as utils
 
 
 class RunModel:

@@ -1,16 +1,16 @@
 import torch
 from torch.utils.data import DataLoader
 
-import CustomDataset
-import Dataset
-import RunModel
-import Decoder
-import Model
-import utils
+import CAPTCHA_OCR.CustomDataset as CustomDataset
+import CAPTCHA_OCR.Dataset as Dataset
+import CAPTCHA_OCR.RunModel as RunModel
+import CAPTCHA_OCR.Decoder as Decoder
+import CAPTCHA_OCR.Model as Model
+import CAPTCHA_OCR.utils as utils
 
 
 def main():
-    config_data = utils.read_config("config_file.json")
+    config_data = utils.read_config("CAPTCHA_OCR/config_file.json")
 
     learning_rate = config_data['model']['learning_rate']
     batch_size = config_data['model']['batch_size']

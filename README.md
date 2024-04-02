@@ -11,8 +11,8 @@ The primary objective of this project is to create an OCR system capable of accu
 ## To-Do List (OCR Part)
 
 - **Replace Greedy Argmax Decoder**: Implement beam search decoder for improved accuracy.
-- **Explore Pretrained Encoder Models**: Test and integrate all possible pretrained encoder models, including Visual Transformer.
-- **Utilize CER**: Implement Character Error Rate for more comprehensive evaluation.
+- **Explore Pretrained Encoder Models**: Test and integrate all possible pretrained encoder models, including Visual Transformer. **DONE**
+- **Utilize CER**: Implement Character Error Rate for more comprehensive evaluation. **DONE**
 - **Fine-Tune on Polish Characters**: Generate synthetic data and fine-tune the system to recognize Polish characters effectively.
 
 ## To-Do List (End-to-End System)
