@@ -1,0 +1,19 @@
+{
+  "model": {
+    "learning_rate": 3e-4,
+    "batch_size": 64,
+    "epochs": 300,
+    "device": "cuda",
+    "num_layers": 3,
+    "dims": 256,
+    "cnn_model": 0
+  },
+  "file": {
+    "images_path": "D:/Databases/06/test",
+    "file_path": "D:/Databases/06/ascii/words_czyste.txt",
+    "height": 50,
+    "width": 180,
+    "path_to_save": "E:/Projects/OCR/OCR-Handwritten-Text/files",
+    "num_channels": 1
+  }
+}

@@ -1,12 +1,12 @@
 import torch
 from torch.utils.data import DataLoader
 
-import CAPTCHA_OCR.CustomDataset as CustomDataset
-import CAPTCHA_OCR.Dataset as Dataset
-import CAPTCHA_OCR.RunModel as RunModel
-import CAPTCHA_OCR.Decoder as Decoder
-import CAPTCHA_OCR.Model as Model
-import CAPTCHA_OCR.utils as utils
+import IAM_OCR.CustomDataset as CustomDataset
+import IAM_OCR.Dataset as Dataset
+import IAM_OCR.RunModel as RunModel
+import IAM_OCR.Decoder as Decoder
+import IAM_OCR.Model as Model
+import IAM_OCR.utils as utils
 
 
 def main():
@@ -20,14 +20,15 @@ def main():
     dims = config_data['model']['dims']
     cnn_model = config_data['model']['cnn_model']
 
-    path = config_data['file']['path']
+    images_path = config_data['file']['images_path']
+    file_path = config_data['file']['file_path']
     height = config_data['file']['height']
     width = config_data['file']['width']
     path_to_save = config_data['file']['path_to_save']
     num_channels = config_data['file']['num_channels']
 
     size = (height, width)
-    dataset = Dataset.Dataset(path)
+    dataset = Dataset.Dataset(images_path=images_path, file_path=file_path)
     (train_paths, test_paths, train_targets, test_targets, train_targets_lengths, test_targets_lengths,
      train_original_targets, test_original_targets, target_classes) = dataset.read_dataset()
 
@@ -86,8 +87,6 @@ def main():
     }
 
     utils.save_model_results(path_to_save, lists)
-
-
 
 
 if __name__ == '__main__':
