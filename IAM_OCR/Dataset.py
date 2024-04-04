@@ -40,6 +40,17 @@ class Dataset:
         df = pd.read_csv(self.file_path, header=None, sep=" ", names=column_names, low_memory=False, quoting=3,
                          dtype=str, keep_default_na=False)
         df = df[~df[0].isin(wrong_image)]
+
+        for i in range(df.shape[0]):
+            temp_text = ''
+            for j in range(8, 11):
+                if df.iloc[i][j] == '':
+                    break
+                temp_text += df.iloc[i][j]
+                temp_text += '|'
+            temp_text = temp_text[:-1]
+            df.loc[i, 8] = temp_text
+
         targets = np.array(df[8])
         Y = targets
         print(len(targets), len(image_paths), wrong_image)

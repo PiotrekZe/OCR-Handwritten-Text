@@ -6,7 +6,7 @@
     "device": "cuda",
     "num_layers": 3,
     "dims": 256,
-    "cnn_model": 0
+    "cnn_model": 3
   },
   "file": {
     "images_path": "D:/Databases/06/test",
