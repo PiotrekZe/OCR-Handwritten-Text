@@ -58,11 +58,11 @@ class Dataset:
         targets, targets_lengths, target_classes = self.__encode_labels(targets)
 
         # to test faster
-        num = 10000
-        targets = targets[:num]
-        targets_lengths = targets_lengths[:num]
-        image_paths = image_paths[:num]
-        Y = Y[:num]
+        # num = 10000
+        # targets = targets[:num]
+        # targets_lengths = targets_lengths[:num]
+        # image_paths = image_paths[:num]
+        # Y = Y[:num]
 
         (train_paths, test_paths, train_targets, test_targets, train_targets_lengths, test_targets_lengths,
          train_original_targets, test_original_targets) = model_selection.train_test_split(image_paths, targets,

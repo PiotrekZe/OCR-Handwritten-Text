@@ -6,13 +6,13 @@
     "device": "cuda",
     "num_layers": 3,
     "dims": 256,
-    "cnn_model": 3
+    "cnn_model": 0
   },
   "file": {
-    "images_path": "D:/Databases/06/test",
-    "file_path": "D:/Databases/06/ascii/words_czyste.txt",
-    "height": 50,
-    "width": 180,
+    "images_path": "D:/Databases/06/lines",
+    "file_path": "D:/Databases/06/ascii/lines_czyste.txt",
+    "height": 100,
+    "width": 600,
     "path_to_save": "E:/Projects/OCR/OCR-Handwritten-Text/files",
     "num_channels": 1
   }
