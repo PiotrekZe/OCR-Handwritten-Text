@@ -1,12 +1,12 @@
 import torch
 from torch.utils.data import DataLoader
 
-import IAM_OCR.CustomDataset as CustomDataset
-import IAM_OCR.Dataset as Dataset
-import IAM_OCR.RunModel as RunModel
-import IAM_OCR.Decoder as Decoder
-import IAM_OCR.Model as Model
-import IAM_OCR.utils as utils
+import CustomDataset
+import Dataset
+import RunModel
+import Decoder
+import Model
+import utils
 
 
 def main():

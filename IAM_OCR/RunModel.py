@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-import IAM_OCR.utils as utils
+import utils
 
 
 class RunModel:

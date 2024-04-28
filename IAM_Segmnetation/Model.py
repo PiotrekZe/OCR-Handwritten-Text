@@ -18,4 +18,4 @@ class UNet:
                                              padding=(3, 3), bias=False)
         self.model = self.model.to(self.device)
 
-        preprocessing_fn = smp.encoders.get_preprocessing_fn(self.encoder, "imagenet")
+        # preprocessing_fn = smp.encoders.get_preprocessing_fn(self.encoder, "imagenet")
