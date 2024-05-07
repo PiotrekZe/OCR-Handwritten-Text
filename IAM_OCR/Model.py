@@ -32,5 +32,6 @@ class CRNN(nn.Module):
         linear_output = self.output(rnn_output)
         x = linear_output.permute(1, 0, 2)
         x = torch.nn.functional.log_softmax(x, 2)
-        loss = self.__ctc_loss(x, targets, target_lengths)
-        return x, loss
+        # loss = self.__ctc_loss(x, targets, target_lengths)
+        # return x, loss
+        return x

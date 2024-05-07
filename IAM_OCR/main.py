@@ -1,3 +1,5 @@
+import os.path
+
 import torch
 from torch.utils.data import DataLoader
 
@@ -31,7 +33,7 @@ def main():
     dataset = Dataset.Dataset(images_path=images_path, file_path=file_path)
     (train_paths, test_paths, train_targets, test_targets, train_targets_lengths, test_targets_lengths,
      train_original_targets, test_original_targets, target_classes) = dataset.read_dataset()
-
+    print(target_classes)
     train_dataset = CustomDataset.CustomDataset(paths=train_paths, targets=train_targets,
                                                 original_targets=train_original_targets, size=size,
                                                 num_channels=num_channels, target_lengths=train_targets_lengths)
@@ -76,6 +78,9 @@ def main():
               test_original_targets_list[:4])
 
         scheduler.step(test_running_loss)
+
+        if (epoch+1) % 5 == 0:
+            torch.save(crnn.state_dict(), os.path.join(path_to_save, str(epoch+1) + ".pt"))
 
     lists = {
         "train_loss": list_train_loss,

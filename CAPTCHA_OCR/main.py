@@ -1,12 +1,12 @@
 import torch
 from torch.utils.data import DataLoader
 
-import CAPTCHA_OCR.CustomDataset as CustomDataset
-import CAPTCHA_OCR.Dataset as Dataset
-import CAPTCHA_OCR.RunModel as RunModel
-import CAPTCHA_OCR.Decoder as Decoder
-import CAPTCHA_OCR.Model as Model
-import CAPTCHA_OCR.utils as utils
+import CustomDataset as CustomDataset
+import Dataset as Dataset
+import RunModel as RunModel
+import Decoder as Decoder
+import Model as Model
+import utils as utils
 
 
 def main():
